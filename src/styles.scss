@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,100..700,0..1');
+
+@font-face {
+    font-family: 'poppins';
+    src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+:root {
+    font-family: 'poppins', 'Poppins', sans-serif;
+    /* 🔵🔵🔵 */
+    /* ⚠️ Please don't change the color value for this one (if ? then you have to change all colorCode in JavaScript file too */
+    --bg-color-blue: #BBD6FD;
+    --accentLightTint-blue: #E2EEFF;
+    --darkerColor-blue: #3569b2;
+    --darkColor-blue: #4382EC;
+    --tonebtn-blue: #2c74f1cf;
+    --textColorDark-blue: #1b3041;
+
+    /* 🔴🔴🔴 */
+    --bg-color-red: #FDBDBD;
+    --accentLightTint-red: #ffe7e7;
+    --darkerColor-red: #B23535;
+    --darkColor-red: #EC4343;
+    --textColorDark-red: #411B1B;
+
+    /*Peela*/
+    --bg-color-yellow: #edea8c;
+    --accentLightTint-yellow: #fff2c2;
+    --darkerColor-yellow: #CCA243;
+    --darkColor-yellow: #f4d837;
+    --textColorDark-yellow: #5B5428;
+
+    /* 🟢🟢🟢 */
+    --bg-color-green: #C7E4C7;
+    --accentLightTint-green: #E1F1E1;
+    --darkerColor-green: #458245;
+    --darkColor-green: #5CBA5C;
+    --textColorDark-green: #1B411B;
+
+    /* Cyan */
+    --bg-color-cyan: #9bffff;
+    --accentLightTint-cyan: #d5ffff;
+    --darkerColor-cyan: #5E9CA0;
+    --darkColor-cyan: #00CED1;
+    --textColorDark-cyan: #08354B;
+
+    /* 🩷💗🩷 */
+    --bg-color-pink: #F9C8D6;
+    --accentLightTint-pink: #FFEBF2;
+    --darkerColor-pink: #B24B64;
+    --darkColor-pink: #EC5E78;
+    --textColorDark-pink: #411B28;
+
+    /* 🟠🟠🟠 */
+    --bg-color-orange: #FFD8B2;
+    --accentLightTint-orange: #FFEDD5;
+    --darkerColor-orange: #B26D3E;
+    --darkColor-orange: #EC844D;
+    --textColorDark-orange: #412B1E;
+
+    /* 🟣🟣🟣 */
+    --bg-color-purple: #DAC2E8;
+    --accentLightTint-purple: #E9E2F3;
+    --darkerColor-purple: #724B8F;
+    --darkColor-purple: #9563B5;
+    --textColorDark-purple: #2D1B3E;
+
+    /* Dark Kaala */
+    --bg-color-dark: #505050;
+    --accentLightTint-dark: #818181;
+    --darkerColor-dark: #010208;
+    --darkColor-dark: #434343;
+    --textColorDark-dark: #010208;
+
+    --md-icon-font:'Material Symbols Rounded';
+    --md-icon-size:32px;  
+    --md-icon-button-icon-size: 32px;
+    --md-outlined-text-field-input-text-font: 'poppins', serif;
+    --md-outlined-text-field-input-text-size: 1.45rem;
+    --md-outlined-text-field-outline-color: #ff000000;
+    --md-ripple-pressed-color: var(--darkerColor-blue);
+    --md-ripple-hover-color: var(--darkColor-blue);
+    --md-sys-color-primary: var(--darkColor-blue);
+    --md-sys-color-on-primary: #ff1515;
+    --md-sys-color-primary-container: #ff0000;
+    --md-sys-color-on-primary-container: #300072;
+    --md-filled-tonal-button-label-text-font: 'poppins';
+    --md-sys-color-secondary-container: var(--tonebtn-blue);
+    --md-sys-color-on-secondary-container: #ffffff;
+}   

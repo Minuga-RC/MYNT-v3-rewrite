@@ -1,0 +1,17 @@
+{
+	"scripts": {
+  "dev": "vite",
+  "build": "vite build"
+},
+
+  "dependencies": {
+    "@material/web": "^2.2.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "lit": "^3.2.1",
+    "rollup": "^4.24.0",
+    "sass": "^1.80.3"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9"
+  }
+}
