@@ -22,7 +22,10 @@ export default defineConfig({
           src: 'src/manifest.json',  // Path to manifest.json in src
           dest: '.'                   // Copy to the root of dist/
         },
-      
+        {
+          src: 'src/background.js',  
+          dest: '.'                   
+        },
         {
           src: 'src/languages.js',  
           dest: './src/'                   

@@ -12,7 +12,6 @@
 }
 
 :root {
-    
     font-family: 'poppins', 'Poppins', sans-serif;
     /* 🔵🔵🔵 */
     /* ⚠️ Please don't change the color value for this one (if ? then you have to change all colorCode in JavaScript file too */
@@ -194,13 +193,13 @@
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
 
 html {
-    
     height: 100%;
     width: 100%;
     margin: 0;
 }
 
 body {
+    font-family: 'poppins', 'Poppins', sans-serif;
      margin: 0;
     padding: 0;
     background-color: var(--bg-color-blue);
