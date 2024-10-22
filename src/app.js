@@ -1,9 +1,13 @@
 // Import Material Web components
 import '@material/web/all.js';
 import '@material/web/icon/icon.js';
+import translations from '/src/languages.js';
 let proxyurl;
 let clocktype;
 let hourformat;
+function getLanguageStatus(key) {
+    return localStorage.getItem(key);
+}
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         // Load the API key, location and proxy from localStorage
@@ -94,6 +98,7 @@ resetdialog.addEventListener('close', () => {
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
         if (currentUserLocation) {
+            
             const locationQuery = savedLocation || currentUserLocation;
             var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
             localStorage.setItem("locationQ", currentUserLocation);
@@ -108,7 +113,6 @@ resetdialog.addEventListener('close', () => {
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
-
         // Weather data
         const conditionText = parsedData.current.condition.text;
         const tempCelsius = Math.round(parsedData.current.temp_c);
@@ -1424,7 +1428,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
         saveCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
-        console.log(shortcutsCheckbox);
         if (shortcutsCheckbox.selected) {
             shortcuts.style.display = "flex";
             saveDisplayStatus("shortcutsDisplayStatus", "flex");
@@ -1553,7 +1556,6 @@ document.addEventListener("DOMContentLoaded", function () {
         //const translationDistance = flexMonitor.clientHeight - defaultHeight;
         const translationDistance = "90";
         shortcutsContainer.style.display = "flex";
-        console.log(translationDistance)
         requestAnimationFrame(() => {
             shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
             shortcutsContainer.classList.add("showBackground");

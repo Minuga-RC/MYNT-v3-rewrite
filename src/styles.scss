@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');*/
 /* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,100..700,0..1');
 
@@ -122,8 +122,7 @@
     --md-dialog-headline-font: 'poppins', serif;
     --md-dialog-supporting-text-font: 'poppins', serif;
     --md-secondary-tab-container-color:var(--accentLightTint-blue);
-    --md-secondary-tab-container-shape:0.7rem;
-    --md-secondary-tab-active-indicator-shape:5rem;
+
 } 
 
 .resultBox {
@@ -454,7 +453,7 @@ md-outlined-text-field#userAPI {
     height: 100%;
     width: 40px;
     background-size: 66%;
-    background: var(--darkColor-blue) url("./src/humidity.svg") no-repeat center center;
+    background: var(--darkColor-blue) url("./humidity.svg") no-repeat center center;
     right: 0;
     border-radius: 100%;
 }
@@ -1492,7 +1491,7 @@ input:checked + .toggle:before {
     content: "";
     width: 36px;
     height: 36px;
-    background: url("./svgs/tick.svg") center center no-repeat;
+    background: url("./tick.svg") center center no-repeat;
     background-size: 74%;
 }
 
