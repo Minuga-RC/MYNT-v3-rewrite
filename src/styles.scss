@@ -1391,7 +1391,9 @@ input:checked + .toggle:before {
     gap: var(--gap);
     /* background-color: yellow; */
 }
-
+.userTextt{
+    display: none;
+}
 .languageSelector {
     background-color: #ffffffe8;
     align-items: center;

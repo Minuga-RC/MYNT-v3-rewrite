@@ -192,7 +192,7 @@ resetdialog.addEventListener('close', () => {
             }
         };
         updateTemperatureDisplay();
-        updatetaptoeditbox();
+        updateusertextbox();
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
@@ -423,12 +423,19 @@ const userTextDiv = document.getElementById("userTextt");
 userTextDiv.addEventListener("input", function () {
     localStorage.setItem("userText", userTextDiv.value);
 });
-function updatetaptoeditbox() {
+function updateusertextbox() {
     const userTextDiv = document.getElementById("userTextt");
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.value = storedValue;
     }
+    const usertextcheckbox = document.getElementById('usertextcheckbox');
+const usertextbox = document.getElementById('userTextt');
+if(usertextcheckbox.selected){
+    usertextbox.style.display = 'block';
+}else{
+    usertextbox.style.display = 'none';  
+}
 }
 
 // Showing border or outline in when you click on searchbar
@@ -1008,6 +1015,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
+    const usertextcheckbox = document.getElementById("usertextcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
@@ -1523,6 +1531,15 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("hourformat", "false");
         }
     });
+    usertextcheckbox.addEventListener("change", function () {
+        saveCheckboxState("usertextcheckboxState", usertextcheckbox);
+        const usertextbox = document.getElementById('userTextt');
+        if (usertextcheckbox.selected) {
+            usertextbox.style.display = 'block';
+        } else {
+            usertextbox.style.display = 'none';  
+        }
+    });
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.selected) {
@@ -1725,6 +1742,7 @@ tabs.forEach(tab => {
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
     loadCheckboxState("digitalCheckboxState", digitalCheckbox);
     loadCheckboxState("hourcheckboxState", hourcheckbox);
+    loadCheckboxState("usertextcheckboxState", usertextcheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("proxybypassField", proxybypassField);
