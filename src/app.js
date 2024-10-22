@@ -26,10 +26,62 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (savedProxy) {
             userProxyInput.value = savedProxy;
         }
-        const saveAPIButton = document.getElementById("saveAPI");
-        const saveLocButton = document.getElementById("saveLoc");
+        function exportLocalStorage() {
+            const localStorageData = JSON.stringify(localStorage);
+            const blob = new Blob([localStorageData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'localStorageBackup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        
+        const saveAPIButton = document.getElementById("saveAPIbtn");
+        const saveLocButton = document.getElementById("saveLocbtn");
         const resetbtn = document.getElementById("resetsettings");
-        const saveProxyButton = document.getElementById("saveproxy");
+        const exportbtn = document.getElementById("exportbtn");
+        const importbtn = document.getElementById("fileInputbtn");
+        const saveProxyButton = document.getElementById("saveproxybtn");
+        
+        exportbtn.addEventListener("click", () => {
+            exportLocalStorage();
+        });
+        
+        importbtn.addEventListener("click", () => {
+            document.getElementById('fileInput').click();
+        });
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+    
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    for (const key in data) {
+                        localStorage.setItem(key, data[key]);
+                    }
+                    const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Settings Imported Successfully!";
+                    document.getElementById('alertform').innerText = "Settings has been Imported Successfully!, Page Refresh Recommended";
+                    alert.show();
+                } catch (error) {
+                    const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Error While Importing Settings";
+                    document.getElementById('alertform').innerText = 'Error importing settings: ' + error.message;
+                    alert.show();
+                }
+            };
+    
+            reader.readAsText(file);
+        }
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
@@ -47,7 +99,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             location.reload();
         });
         resetbtn.addEventListener("click", () => {
-
            const resetdialog =document.getElementById("resetdialog");
             resetdialog.show();
 resetdialog.addEventListener('close', () => {
@@ -65,7 +116,6 @@ resetdialog.addEventListener('close', () => {
         saveProxyButton.addEventListener("click", () => {
             const proxyurl = userProxyInput.value;
 
-            // Check if the input contains 'http://' or 'https://'
             if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
                 if (!proxyurl.endsWith("/")) {
                     // Save the proxy to localStorage
@@ -74,11 +124,16 @@ resetdialog.addEventListener('close', () => {
                     location.reload();
                 }
                 else {
-                    alert("There shouldn't be / at the end of the link");
+                    const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Invalid proxy";
+                    document.getElementById('alertform').innerText = "There shouldn't be / at the end of the link";
+                    alert.show();
                 }
             } else {
-                // Alert the user if it's not a valid link
-                alert("Only links (starting with http:// or https://) are allowed.");
+                const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Invalid proxy";
+                    document.getElementById('alertform').innerText = "Only links (starting with http:// or https://) are allowed.";
+                    alert.show();
             }
         });
 
@@ -159,7 +214,10 @@ resetdialog.addEventListener('close', () => {
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        // alert("Unable to fetch weather data. Please check your location or API key.");
+        const alert =document.getElementById("alertbody");
+                    document.getElementById('alertbodyheadline').innerText = "Error fetching weather data";
+                    document.getElementById('alertbodyform').innerText = 'Unable to fetch weather data. Please check your location or API key.';
+                    alert.show();
         // Handle errors here, e.g., display an error message to the user.
     }
 });
@@ -376,6 +434,7 @@ function updatetaptoeditbox() {
 // Showing border or outline in when you click on searchbar
 const searchbar = document.getElementById('searchbar');
 searchbar.addEventListener('click', function () {
+    const searchInput2 = document.getElementById("searchQ");
     searchbar.classList.toggle('active');
     if (searchInput2.value !== "") {
         showResultBox()
@@ -451,7 +510,10 @@ function removeChipById(chipId) {
         chip.remove();
     }
 }
-
+const restorechipsbtn = document.getElementById("restorechipsbtn");
+        restorechipsbtn.addEventListener("click", () => {
+            restoreAllChips();
+        });
 // Function to restore all removed chips
 function restoreAllChips() {
     
@@ -823,33 +885,7 @@ menuBar.addEventListener("click", (event) => {
 document.getElementById("menuCloseButton").onclick = () => {
     closeMenuBar()
 }
-// Select all primary tabs
-const tabs = document.querySelectorAll('md-primary-tab');
-const panels = document.querySelectorAll('[role="tabpanel"]');
 
-// Function to show the selected panel and hide others
-function handleTabClick(event) {
-    const selectedTab = event.currentTarget;
-    const selectedPanelId = selectedTab.id.replace('-tab', '-panel');
-    
-    // Hide all panels and deactivate all tabs
-    panels.forEach(panel => {
-        panel.hidden = true; // Hide all panels
-    });
-    tabs.forEach(tab => {
-        tab.removeAttribute('active'); // Remove active attribute from all tabs
-    });
-    
-    // Show the selected panel and activate the selected tab
-    const selectedPanel = document.getElementById(selectedPanelId);
-    selectedPanel.hidden = false; // Show the selected panel
-    selectedTab.setAttribute('active', ''); // Set active attribute on selected tab
-}
-
-// Add click event listeners to each tab
-tabs.forEach(tab => {
-    tab.addEventListener('click', handleTabClick);
-});
 
 const secondaryTabs = document.querySelectorAll('md-secondary-tab');
 const secondaryPanels = document.querySelectorAll('[role="tabpanel2"]');
@@ -1417,9 +1453,11 @@ document.addEventListener("DOMContentLoaded", function () {
     * This function shows the proxy disclaimer.
     */
     function showProxyDisclaimer() {
-        const message = "It is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
 
-        confirm(message);
+        const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Please Use Your Own Proxy";
+                    document.getElementById('alertform').innerText ="It is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+                    alert.show();
     }
 
 
@@ -1499,7 +1537,10 @@ document.addEventListener("DOMContentLoaded", function () {
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.selected) {
-            alert("This setting is still experimental");
+            const alert =document.getElementById("alert");
+                    document.getElementById('alertheadline').innerText = "Warning";
+                    document.getElementById('alertform').innerText = "This setting is still experimental";
+                    alert.show();
             saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
         } else {
@@ -1596,7 +1637,46 @@ document.addEventListener("DOMContentLoaded", function () {
             overviewPage.style.display = "none";
         }, 650);
     }
+function closeshortcuteditmenu(){
 
+        overviewPage.style.display = "block"
+        overviewPage.style.transform = "translateX(0)";
+        overviewPage.style.opacity = "1";
+        shortcutEditPage.style.display = "none";
+
+    requestAnimationFrame(() => {
+        shortcutEditPage.style.transform = "translateX(120%)";
+        shortcutEditPage.style.opacity = "0";
+    });
+   
+}
+// Select all primary tabs
+const tabs = document.querySelectorAll('md-primary-tab');
+const panels = document.querySelectorAll('[role="tabpanel"]');
+
+// Function to show the selected panel and hide others
+function handleTabClick(event) {
+    const selectedTab = event.currentTarget;
+    const selectedPanelId = selectedTab.id.replace('-tab', '-panel');
+    closeshortcuteditmenu();
+    // Hide all panels and deactivate all tabs
+    panels.forEach(panel => {
+        panel.hidden = true; // Hide all panels
+    });
+    tabs.forEach(tab => {
+        tab.removeAttribute('active'); // Remove active attribute from all tabs
+    });
+    
+    // Show the selected panel and activate the selected tab
+    const selectedPanel = document.getElementById(selectedPanelId);
+    selectedPanel.hidden = false; // Show the selected panel
+    selectedTab.setAttribute('active', ''); // Set active attribute on selected tab
+}
+
+// Add click event listeners to each tab
+tabs.forEach(tab => {
+    tab.addEventListener('click', handleTabClick);
+});
     // Close page by sliding it away to the right.
     backButton.onclick = () => {
         setTimeout(() => {

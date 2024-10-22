@@ -30,19 +30,19 @@ const translations = {
         "ProxyText": "CORS Bypass Proxy",
         "ProxySubtext": "Add your own CORS Bypass Proxy",
         "HostproxyButton": "Host Your Own Proxy",
-        "saveproxy": "Enter",
+        "saveproxy": "Save",
         // Location
         "UserLocText": "Enter your location",
         "UserLocSubtext": "If the weather location isn't correct",
         "userLoc": "Your location (City/Latitude,Longitude)",
         "InputOptionsButton": "Input Options",
-        "saveLoc": "Enter",
+        "saveLoc": "Save",
         // Weather
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn More",
-        "saveAPI": "Enter",
+        "saveAPI": "Save",
         // End of Menu Items
 
         // Body Items

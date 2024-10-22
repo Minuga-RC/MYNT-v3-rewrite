@@ -11,7 +11,16 @@
   <link rel="stylesheet" crossorigin href="/styles.css">
 </head>
 <body>
-    
+    <md-dialog type="alert" id="alertbody">
+        <div slot="headline" id="alertbodyheadline">Alert dialog</div>
+        <form id="alertbodyform" slot="content" method="dialog">
+          This is a standard alert dialog. Alert dialogs interrupt users with
+          urgent information, details, or actions.
+        </form>
+        <div slot="actions">
+          <md-text-button form="alertbodyform" value="ok">OK</md-text-button>
+        </div>
+      </md-dialog>
   <div class="centerDiv">
     <div class="leftDiv">
             
@@ -247,6 +256,28 @@
 
 <!-- ------Menu-bar----------- -->
 <div class="menuBar" id="menuBar" style="display: none;">
+    <md-dialog id="resetdialog">
+        <div slot="headline">Reset All Settings?</div>
+        <md-icon slot="icon">delete_outline</md-icon>
+        <form id="form" slot="content" method="dialog">
+            Are you sure you want to reset your settings? This action cannot be undone.
+        </form>
+        <div slot="actions">
+          <md-text-button form="form" value="delete">Reset</md-text-button>
+          <md-filled-tonal-button form="form" value="cancel" autofocus
+            >Cancel</md-filled-tonal-button>
+        </div>
+      </md-dialog>
+      <md-dialog type="alert" id="alert">
+        <div slot="headline" id="alertheadline">Alert dialog</div>
+        <form id="alertform" slot="content" method="dialog">
+          This is a standard alert dialog. Alert dialogs interrupt users with
+          urgent information, details, or actions.
+        </form>
+        <div slot="actions">
+          <md-text-button form="alertform" value="ok">OK</md-text-button>
+        </div>
+      </md-dialog>
     <div class="menuCont" id="menuCont">
         <div class="topRounder">
             <!-- <img src="./svgs/rounder.svg" alt=""> -->
@@ -452,9 +483,8 @@
                                     </div>
                                 </div>
                                 <div class="bottom">
-                                    <a href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton">Host
-                                        Your Own Proxy</a>
-                                    <button id="saveproxy">Enter</button>
+                                    <md-text-button href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton">Host Your Own Proxy</md-text-button>
+                                    <md-filled-button id="saveproxybtn"><md-icon slot="icon">save</md-icon><div id="saveproxy">Save</div></md-filled-button>
                                 </div>
                             </div>
                         </div>
@@ -482,9 +512,8 @@
                             </div>
                             
                             <div class="bottom">
-                                <a href="https://www.weatherapi.com/docs/#intro-request-param"
-                                    id="InputOptionsButton">Input Options</a>
-                                <button id="saveLoc">Enter</button>
+                                <md-text-button href="https://www.weatherapi.com/docs/#intro-request-param" id="InputOptionsButton">Input Options</md-text-button>
+                                <md-filled-button id="saveLocbtn"><md-icon slot="icon">save</md-icon><div id="saveLoc">Save</div></md-filled-button>
                             </div>
                         </div>
                         
@@ -496,30 +525,21 @@
                             </div>
                         </div>
                         <div class="bottom">
-                            <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</a>
-                            <button id="saveAPI">Enter</button>
+                            <md-text-button href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</md-text-button>
+                                <md-filled-button id="saveAPIbtn"><md-icon slot="icon">save</md-icon><div id="saveAPI">Save</div></md-filled-button>
                         </div>
                     </div>
                     </div>
                   </div>
                   <div id="advanced-panel" role="tabpanel" aria-labelledby="advanced-tab"  style="margin-top: 10px;" hidden>
                     <div class="toggleTextsCont">
+                        <md-filled-button id="exportbtn"><md-icon slot="icon">upload</md-icon>Export Settings</md-filled-button>
+                        <md-filled-button id="fileInputbtn"><md-icon slot="icon">download</md-icon>Import Settings</md-filled-button>
+                        <md-filled-button id="restorechipsbtn"><md-icon slot="icon">restore</md-icon>Restore All Search Engine Chips</md-filled-button>
+                        <md-outlined-button id="resetsettings">Reset Settings</md-outlined-button>
                         
+                    <input type="file" id="fileInput" accept=".json" style="display: none;" />
                     
-                    <button class="resetbtn" id="resetsettings">Reset Settings</button>
-                    <md-dialog id="resetdialog">
-                        <div slot="headline">Reset All Settings?</div>
-                        <md-icon slot="icon">delete_outline</md-icon>
-                        <form id="form" slot="content" method="dialog">
-                            Are you sure you want to reset your settings? This action cannot be undone.
-                        </form>
-                        <div slot="actions">
-                          <md-text-button form="form" value="delete">Reset</md-text-button>
-                          <md-filled-tonal-button form="form" value="cancel" autofocus
-                            >Cancel</md-filled-tonal-button
-                          >
-                        </div>
-                      </md-dialog>
                     <div class="tilesCont" style="margin-top: 100px;">
 
                         <!-- ----tiles----------- -->
